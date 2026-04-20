@@ -15,6 +15,7 @@
 :root {
   /* UQ accent — used sparingly */
   --uq:      #51247A;
+  --uq-green: #2EA836;
 
   /* Cool light palette */
   --ink:     #1F2937;
@@ -214,17 +215,17 @@ body {
   );
 }
 
-/* Milestones — Font Awesome circle-check icons */
+/* Milestones — Font Awesome icons */
 .ms {
   position: absolute;
   transform: translate(-50%, -50%);
-  font-size: 20px;
+  font-size: 18px;
   z-index: 4;
   cursor: pointer;
-  transition: transform 0.18s ease;
+  transition: transform 0.2s ease;
   line-height: 1;
 }
-.ms:hover { transform: translate(-50%, -50%) scale(1.05); }
+.ms:hover { color: var(--uq-green); }
 .ms-uq  { color: var(--uq); }
 .ms-ink { color: var(--ink); }
 
@@ -477,11 +478,11 @@ body {
     Completed
   </div>
   <div class="leg-item">
-    <i class="fa-regular fa-circle-check leg-icon" style="color:var(--uq);"></i>
+    <i class="fa-regular fa-calendar-day leg-icon" style="color:var(--uq);"></i>
     Grant Bowie visit
   </div>
   <div class="leg-item">
-    <i class="fa-regular fa-circle-check leg-icon" style="color:var(--ink);"></i>
+    <i class="fa-regular fa-calendar-day leg-icon" style="color:var(--ink);"></i>
     Steering Committee
   </div>
 </div>
@@ -557,7 +558,7 @@ body {
       </div>
     </div>
     <div class="ms-row">
-      <i class="fa-regular fa-circle-check ms-row-icon"></i>
+      <i class="fa-regular fa-calendar-day ms-row-icon"></i>
       <div><strong>2 July — Grant Bowie Visit.</strong> Demonstrate: (1) BBusMan Mapping as foundation · (2) BISM1201 Toolkit live · (3) Methodology and roadmap — one page, no jargon. Donor-ready package signed off by Rachel by 25 June.</div>
     </div>
   </div>
@@ -587,7 +588,7 @@ body {
       </div>
     </div>
     <div class="ms-row ink-accent">
-      <i class="fa-regular fa-circle-check ms-row-icon"></i>
+      <i class="fa-regular fa-calendar-day ms-row-icon"></i>
       <div><strong>December — Steering Committee.</strong> Year 1 report endorsed · Year 2 plan confirmed · Toolkit v2 published for all UQBS academics.</div>
     </div>
   </div>
@@ -736,7 +737,7 @@ function render() {
 
     if (t.milestone) {
       const msX = LABEL_W + (t.at / N) * trackW;
-      html += `<i class="fa-regular fa-circle-check ms ms-${t.mtype}" style="left:${msX}px;top:${rowCenter}px;" data-idx="${i}"></i>`;
+      html += `<i class="fa-regular fa-calendar-day ms ms-${t.mtype}" style="left:${msX}px;top:${rowCenter}px;" data-idx="${i}"></i>`;
       html += `<div class="ms-lbl ${t.mtype}" style="left:${msX}px;top:${rowCenter - 22}px;">${t.lbl}</div>`;
     } else {
       const barLeft = LABEL_W + (t.s / N) * trackW;
