@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEL AI Initiative — 2026 Timeline</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+:root {
+  /* UQ accent — used sparingly */
+  --uq:      #51247A;
+
+  /* Cool light palette */
+  --ink:     #1F2937;
+  --ink-mid: #4B5563;
+  --ink-lt:  #8C96A3;
+  --rule:    #D9DEE5;
+  --rule-lt: #E8ECF1;
+  --surf:    #F5F7FA;
+  --surf-2:  #FAFBFC;
+  --white:   #FFFFFF;
+  --page-bg: #EEF1F5;
+
+  /* Phase blues — cool gradient from deep to soft */
+  --p1:      #3B5F8A;
+  --p2:      #5B8AB5;
+  --p3:      #7FA8C5;
+
+  --font: 'Figtree', system-ui, -apple-system, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; }
+body {
+  font-family: var(--font);
+  background: var(--page-bg);
+  color: var(--ink-mid);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+  font-weight: 400;
+}
+
+/* ═══ PAGE ═══════════════════════════════════════════════ */
+.page {
+  max-width: 1440px;
+  margin: 32px auto 56px;
+  background: var(--white);
+  box-shadow: 0 1px 2px rgba(31,41,55,0.04), 0 8px 40px rgba(31,41,55,0.06);
+}
+
+/* ═══ HEADER ═════════════════════════════════════════════ */
+.hdr {
+  padding: 44px 56px 36px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 32px;
+}
+.hdr-eye {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-lt);
+  margin-bottom: 12px;
+}
+.hdr-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+.hdr-title::before {
+  content: '';
+  display: inline-block;
+  width: 4px;
+  height: 28px;
+  background: var(--uq);
+  margin-right: 14px;
+  vertical-align: -4px;
+}
+.hdr-sub {
+  font-size: 14px;
+  color: var(--ink-mid);
+  margin-top: 10px;
+  font-weight: 400;
+}
+.hdr-right { text-align: right; }
+.ver {
+  font-size: 11px;
+  color: var(--ink-lt);
+  letter-spacing: 0.08em;
+  font-weight: 500;
+}
+
+/* ═══ LEGEND ═════════════════════════════════════════════ */
+.legend {
+  padding: 18px 56px;
+  background: var(--surf-2);
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.leg-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--ink-mid);
+  font-weight: 500;
+}
+.leg-dot {
+  width: 14px;
+  height: 10px;
+  flex-shrink: 0;
+}
+.leg-icon {
+  font-size: 13px;
+  flex-shrink: 0;
+  width: 14px;
+  text-align: center;
+}
+
+/* ═══ TIMELINE ═══════════════════════════════════════════ */
+.tl-wrap {
+  padding: 40px 56px 24px;
+}
+.tl-canvas {
+  position: relative;
+  width: 100%;
+  cursor: crosshair;
+}
+.tl-svg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.tl-mlbl {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-lt);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-left: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.tl-activity-head {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+  padding-left: 4px;
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--ink-lt);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+/* Row labels */
+.tl-row-lbl {
+  position: absolute;
+  left: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 4px;
+  padding-right: 16px;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.3;
+  z-index: 2;
+}
+.tl-row-lbl.milestone-lbl {
+  font-weight: 400;
+  color: var(--ink-mid);
+  font-style: italic;
+}
+
+/* Bars */
+.bar {
+  position: absolute;
+  z-index: 1;
+  cursor: pointer;
+  transition: opacity 0.18s ease, filter 0.18s ease;
+}
+.bar:hover { filter: brightness(1.1); }
+.bar-p1 { background: var(--p1); }
+.bar-p2 { background: var(--p2); }
+.bar-p3 { background: var(--p3); }
+.bar-done {
+  background: var(--p1);
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255,255,255,0) 0,
+    rgba(255,255,255,0) 6px,
+    rgba(255,255,255,0.2) 6px,
+    rgba(255,255,255,0.2) 7px
+  );
+}
+
+/* Milestones — Font Awesome calendar-check icons */
+.ms {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+  z-index: 4;
+  cursor: pointer;
+  transition: transform 0.18s ease;
+  line-height: 1;
+}
+.ms:hover { transform: translate(-50%, -50%) scale(1.15); }
+.ms-uq  { color: var(--uq); }
+.ms-ink { color: var(--ink); }
+
+.ms-lbl {
+  position: absolute;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+  pointer-events: none;
+  transform: translateX(-50%);
+  text-transform: uppercase;
+}
+.ms-lbl.uq  { color: var(--uq); }
+.ms-lbl.ink { color: var(--ink); }
+
+/* Cursor tracker (replaces static today line) */
+.cursor-line {
+  stroke: var(--uq);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+}
+.cursor-line.active { opacity: 0.6; }
+
+.cursor-date {
+  position: absolute;
+  background: var(--uq);
+  color: var(--white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  transform: translateX(-50%);
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  white-space: nowrap;
+  z-index: 5;
+}
+.cursor-date.active { opacity: 1; }
+.cursor-date::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid var(--uq);
+}
+
+/* Today marker — subtle, persistent */
+.today-marker {
+  stroke: var(--uq);
+  stroke-width: 1;
+  opacity: 0.35;
+}
+
+/* Tooltip */
+.tooltip {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  background: var(--ink);
+  color: var(--white);
+  font-family: var(--font);
+  font-size: 12px;
+  line-height: 1.55;
+  padding: 10px 14px;
+  max-width: 300px;
+  pointer-events: none;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+.tooltip.show { display: block; }
+.tooltip-title {
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 6px;
+}
+.tooltip-body {
+  color: rgba(255,255,255,0.92);
+  font-weight: 400;
+}
+.tooltip-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.55);
+  margin-top: 6px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* ═══ ACTIONS ════════════════════════════════════════════ */
+.actions {
+  padding: 16px 56px 40px;
+}
+.act-phase { margin-bottom: 28px; }
+.act-phase:last-child { margin-bottom: 0; }
+.act-phase-hdr {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--rule);
+}
+.act-phase-tag {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--white);
+  padding: 4px 10px;
+  line-height: 1;
+}
+.p1t { background: var(--p1); }
+.p2t { background: var(--p2); }
+.p3t { background: var(--p3); }
+.act-phase-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.act-phase-period {
+  font-size: 12px;
+  color: var(--ink-lt);
+  margin-left: auto;
+  letter-spacing: 0.04em;
+}
+
+.act-rows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px 40px;
+}
+.act-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  font-size: 12.5px;
+  line-height: 1.6;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-lt);
+}
+.act-item:nth-child(odd):last-child { grid-column: 1 / -1; }
+.act-when {
+  flex-shrink: 0;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--white);
+  padding: 3px 8px;
+  margin-top: 3px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+.wh-p1 { background: var(--p1); }
+.wh-p2 { background: var(--p2); }
+.wh-p3 { background: var(--p3); }
+.act-txt { color: var(--ink-mid); }
+.act-txt strong { color: var(--ink); font-weight: 600; }
+
+/* Milestone row */
+.ms-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 16px;
+  border: 1px solid var(--rule);
+  border-left: 3px solid var(--uq);
+  background: var(--surf);
+  margin-top: 14px;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: var(--ink-mid);
+}
+.ms-row.ink-accent { border-left-color: var(--ink); }
+.ms-row .ms-row-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 14px;
+  color: var(--uq);
+}
+.ms-row.ink-accent .ms-row-icon { color: var(--ink); }
+.ms-row strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ═══ FOOTER ═════════════════════════════════════════════ */
+.foot {
+  border-top: 1px solid var(--rule);
+  padding: 18px 56px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: var(--ink-lt);
+  background: var(--surf-2);
+  letter-spacing: 0.06em;
+}
+
+/* ═══ RESPONSIVE ═════════════════════════════════════════ */
+@media (max-width: 1100px) {
+  .page { max-width: 100%; margin: 0; }
+  .hdr, .legend, .tl-wrap, .actions, .foot { padding-left: 32px; padding-right: 32px; }
+  .hdr-title { font-size: 26px; }
+  .act-rows { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .hdr { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hdr-right { align-self: flex-end; }
+  .legend { gap: 16px; }
+  .tl-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  #tlCanvas { min-width: 900px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- ═══ HEADER ═══════════════════════════════════════════ -->
+<div class="hdr">
+  <div class="hdr-left">
+    <div class="hdr-eye">BEL Graduate AI Initiative · UQ Business School</div>
+    <div class="hdr-title">Year 1 Operating Plan</div>
+    <div class="hdr-sub">2026 Timeline &amp; Action Map</div>
+  </div>
+  <div class="hdr-right">
+    <div class="ver">v. 2026.0420</div>
+  </div>
+</div>
+
+<!-- ═══ LEGEND ═══════════════════════════════════════════ -->
+<div class="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:var(--p1);"></div>Phase 1 — Mapping the Core</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--p2);"></div>Phase 2 — Design &amp; Development</div>
+  <div class="leg-item"><div class="leg-dot" style="background:var(--p3);"></div>Phase 3 — Pilot &amp; Baseline</div>
+  <div class="leg-item">
+    <div class="leg-dot" style="background:var(--p1);background-image:repeating-linear-gradient(135deg,transparent 0,transparent 4px,rgba(255,255,255,0.35) 4px,rgba(255,255,255,0.35) 5px);"></div>
+    Completed
+  </div>
+  <div class="leg-item">
+    <i class="fa-regular fa-calendar-check leg-icon" style="color:var(--uq);"></i>
+    Grant Bowie visit
+  </div>
+  <div class="leg-item">
+    <i class="fa-regular fa-calendar-check leg-icon" style="color:var(--ink);"></i>
+    Steering Committee
+  </div>
+</div>
+
+<!-- ═══ TIMELINE ═══════════════════════════════════════════ -->
+<div class="tl-wrap">
+  <div id="tlCanvas" class="tl-canvas"></div>
+</div>
+
+<!-- ═══ ACTIONS ═══════════════════════════════════════════ -->
+<div class="actions">
+
+  <div class="act-phase">
+    <div class="act-phase-hdr">
+      <span class="act-phase-tag p1t">Phase 1</span>
+      <span class="act-phase-title">Mapping the Core</span>
+      <span class="act-phase-period">MARCH – APRIL 2026</span>
+    </div>
+    <div class="act-rows">
+      <div class="act-item">
+        <span class="act-when wh-p1">Complete</span>
+        <span class="act-txt"><strong>AI × BBusMan Mapping</strong> — all 8 core courses across 7 dimensions of AI integration readiness</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p1">Complete</span>
+        <span class="act-txt"><strong>LO Analysis</strong> — all 8 courses; learning outcomes assessed for AI augmentation potential</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p1">Complete</span>
+        <span class="act-txt"><strong>Scaffolding View</strong> — Year 1 → 3 capability arc established; informs Framework design</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p1">Apr</span>
+        <span class="act-txt"><strong>BISM1201 deep-dive narrative</strong> — anchor course case study for toolkit development</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p1">17 Apr–May</span>
+        <span class="act-txt">Course observation invitations · S1 lectures and tutorials for first-hand observation</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="act-phase">
+    <div class="act-phase-hdr">
+      <span class="act-phase-tag p2t">Phase 2</span>
+      <span class="act-phase-title">Design &amp; Development</span>
+      <span class="act-phase-period">EARLY MAY – JULY 2026</span>
+    </div>
+    <div class="act-rows">
+      <div class="act-item">
+        <span class="act-when wh-p2">May</span>
+        <span class="act-txt"><strong>AI Capability Framework v1</strong> — three-level progression (Aware → Practitioner → Reflective); DEC dimensions mapped onto LO analysis</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p2">May–Jun</span>
+        <span class="act-txt"><strong>BISM1201 Toolkit</strong> — expanded CAC module; discipline-specific AI guide; faculty implementation guide</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p2">May–Jun</span>
+        <span class="act-txt"><strong>MGTS1301 AI guide</strong> — discipline-specific student guide; Everest simulation debrief scoped for S2 with Sandra</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p2">May–Jul</span>
+        <span class="act-txt"><strong>AI Readiness Checklist</strong> — dual-layer model (Structural + Human); validated against mapping ground truth</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p2">May–Jun</span>
+        <span class="act-txt"><strong>Co-design conversations</strong> — BISM1201 coordinator (Shahrzad) · MGTS1301 coordinator for S2 pilot planning</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p2">Jun</span>
+        <span class="act-txt"><strong>Staff workshop + inaugural CoP</strong> — "AI in Your Teaching" 90 min, demo-led; Sean, Rey, Anna Jenkins showcased</span>
+      </div>
+    </div>
+    <div class="ms-row">
+      <i class="fa-regular fa-calendar-check ms-row-icon"></i>
+      <div><strong>2 July — Grant Bowie Visit.</strong> Demonstrate: (1) BBusMan Mapping as foundation · (2) BISM1201 Toolkit live · (3) Methodology and roadmap — one page, no jargon. Donor-ready package signed off by Rachel by 25 June.</div>
+    </div>
+  </div>
+
+  <div class="act-phase">
+    <div class="act-phase-hdr">
+      <span class="act-phase-tag p3t">Phase 3</span>
+      <span class="act-phase-title">Pilot &amp; Baseline</span>
+      <span class="act-phase-period">JULY – DECEMBER 2026</span>
+    </div>
+    <div class="act-rows">
+      <div class="act-item">
+        <span class="act-when wh-p3">Aug–Sep</span>
+        <span class="act-txt">Confirm pilot coordinators (MGTS1301 + one other) · Deploy CAC materials into pilot Blackboard sites · Brief on data collection protocol</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p3">Sep–Oct</span>
+        <span class="act-txt">Student pre-survey (AI use habits, CAC confidence, disclosure awareness) · Monitor pilot delivery · Coordinator check-in</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p3">Oct</span>
+        <span class="act-txt">Toolkit v2 drafted (second discipline) · CoP S2 session — pilot course experiences showcased</span>
+      </div>
+      <div class="act-item">
+        <span class="act-when wh-p3">Nov</span>
+        <span class="act-txt">End-of-semester student data · Structured coordinator interviews · Year 1 Annual Progress Report drafted · AI Readiness Checklist iteration</span>
+      </div>
+    </div>
+    <div class="ms-row ink-accent">
+      <i class="fa-regular fa-calendar-check ms-row-icon"></i>
+      <div><strong>December — Steering Committee.</strong> Year 1 report endorsed · Year 2 plan confirmed · Toolkit v2 published for all UQBS academics.</div>
+    </div>
+  </div>
+
+</div><!-- actions -->
+
+<div class="foot">
+  <div>BEL Graduate AI Initiative · Year 1 Operating Plan</div>
+  <div>Michael Lin</div>
+</div>
+
+</div><!-- page -->
+
+<div class="tooltip" id="tt"></div>
+
+<script>
+// ═══ CONFIG ════════════════════════════════════════════════
+const MONTHS = ['MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+const MONTH_DAYS = [31, 30, 31, 30, 31, 31, 30, 31, 30, 31]; // Mar–Dec
+const N = MONTHS.length;
+const LABEL_W = 210;
+const ROW_H = 38;
+const BAR_H = 18;
+const HEADER_H = 40;
+const GUTTER_TOP = 20;
+
+// Today: 20 April 2026 → index 1 (Apr), day 20
+const TODAY_MONTH_IDX = 1;
+const TODAY_DAY = 20;
+const TODAY_FRAC = TODAY_MONTH_IDX + (TODAY_DAY - 1) / MONTH_DAYS[TODAY_MONTH_IDX];
+
+const TRACKS = [
+  // Phase 1 — all three foundational analyses are complete
+  { label: 'AI × BBusMan Mapping',           cls: 'bar-done', s: 0,    e: 0.9,
+    tip: { title: 'AI × BBusMan Mapping', body: 'All 8 core courses across 7 dimensions of AI integration readiness.', sub: 'Complete' } },
+  { label: 'LO Analysis (all 8 courses)',    cls: 'bar-done', s: 0.55, e: 1.6,
+    tip: { title: 'LO-Level AI Analysis', body: 'Learning outcomes assessed for AI augmentation potential. Informs Framework design.', sub: 'Complete' } },
+  { label: 'Scaffolding View (Yr 1–3)',      cls: 'bar-done', s: 1.0,  e: 1.7,
+    tip: { title: 'Scaffolding View', body: 'Year 1 → Year 3 capability arc across the BBusMan degree.', sub: 'Complete' } },
+  { label: 'BISM1201 deep-dive',             cls: 'bar-p1',   s: 1.2,  e: 2.0,
+    tip: { title: 'BISM1201 Deep-Dive Narrative', body: 'Anchor course case study. Becomes the worked example in the toolkit and benchmark for other courses.', sub: 'In progress · Late April' } },
+  { label: 'S1 Course observation',          cls: 'bar-p1',   s: 1.5,  e: 2.8,
+    tip: { title: 'S1 Course Observation', body: 'Attend BBusMan lectures, seminars, and tutorials for first-hand observation notes.', sub: '17 Apr – early May' } },
+
+  // Phase 2
+  { label: 'AI Capability Framework v1',     cls: 'bar-p2',   s: 2.1,  e: 4.0,
+    tip: { title: 'BBusMan AI Capability Framework v1', body: 'Three-level progression: Aware (Yr 1) → Practitioner (Yr 2) → Reflective Leader (Yr 3). Grounded in LO analysis.', sub: 'Draft May · Co-design June · Finalise late June' } },
+  { label: 'BISM1201 Toolkit',               cls: 'bar-p2',   s: 2.1,  e: 4.5,
+    tip: { title: 'Subject-Specific Toolkit — BISM1201', body: 'Expanded CAC module · Discipline-specific AI guide · Assessment Helper extensions · Faculty implementation guide.', sub: 'Build May–Jun · Demo-ready by end of June' } },
+  { label: 'MGTS1301 AI Guide',              cls: 'bar-p2',   s: 2.5,  e: 3.8,
+    tip: { title: 'MGTS1301 Quick Win', body: 'Discipline-specific AI guide for students. Everest simulation debrief scoped for S2 pilot.', sub: 'Complete by end of June' } },
+  { label: 'AI Readiness Checklist',         cls: 'bar-p2',   s: 2.5,  e: 4.5,
+    tip: { title: 'AI Readiness Checklist', body: 'Dual-layer model (Structural + Human Readiness) producing intervention strategies. Validated against mapping ground truth.', sub: 'Design May–Jul · Demo-ready July' } },
+  { label: 'Staff workshop + CoP inaugural', cls: 'bar-p2',   s: 3.2,  e: 4.0,
+    tip: { title: 'Staff Workshop + CoP Inaugural', body: '"AI in Your Teaching" — 90 min, demo-led. CoP inaugural session: internal innovators showcased (Sean, Rey, Anna Jenkins).', sub: 'June' } },
+  { label: 'Grant Bowie visit',              milestone: true, mtype: 'uq',  at: 4.0,  lbl: '2 JUL',
+    tip: { title: '2 July — Grant Bowie Visit', body: 'Demonstrate: (1) BBusMan Mapping as foundation · (2) BISM1201 Toolkit live · (3) Methodology and roadmap — one page, no jargon.', sub: 'Donor-ready package signed off by 25 June' } },
+
+  // Phase 3
+  { label: 'Pilot preparation + deploy',     cls: 'bar-p3',   s: 4.5,  e: 5.8,
+    tip: { title: 'S2 Pilot Preparation', body: 'Confirm coordinators (MGTS1301 + one other) · Co-design specific assessed task · Deploy CAC materials into Blackboard · Brief on data protocol.', sub: 'Aug – Sep' } },
+  { label: 'S2 pilot running',               cls: 'bar-p3',   s: 5.8,  e: 8.5,
+    tip: { title: 'S2 Pilot Active', body: 'Active AI integration in at least one course (target: two). Monitor delivery; attend tutorials where possible.', sub: 'Sep – Nov' } },
+  { label: 'Student pre-survey',             cls: 'bar-p3',   s: 5.9,  e: 6.4,
+    tip: { title: 'Pre-Survey (Baseline)', body: '3–5 questions: AI use habits, CAC model awareness, UQBS disclosure requirement.', sub: 'Sep – early Oct' } },
+  { label: 'CoP S2 + Toolkit v2',            cls: 'bar-p3',   s: 6.9,  e: 7.6,
+    tip: { title: 'CoP S2 + Toolkit v2', body: 'CoP second session: pilot course experiences showcased. Toolkit v2 drafted — expanded to second discipline.', sub: 'October' } },
+  { label: 'Student post-survey',            cls: 'bar-p3',   s: 8.1,  e: 8.5,
+    tip: { title: 'Post-Survey', body: 'Self-rated AI use confidence (pre/post scale) and AI Literacy Baseline (DEC Level 1 competencies).', sub: 'Late November' } },
+  { label: 'Year 1 report',                  cls: 'bar-p3',   s: 8.0,  e: 9.5,
+    tip: { title: 'Year 1 Annual Progress Report', body: 'Coordinator interviews. Student data compiled. AI Readiness Checklist iteration based on practice and feedback.', sub: 'Nov – Dec' } },
+  { label: 'Steering Committee',             milestone: true, mtype: 'ink', at: 9.7,  lbl: 'DEC',
+    tip: { title: 'December — Steering Committee', body: 'Year 1 report presented and endorsed · Year 2 plan confirmed · Toolkit v2 published for all UQBS academics.', sub: 'December 2026' } },
+];
+
+// ═══ RENDER ════════════════════════════════════════════════
+let cachedLayout = null;
+
+function render() {
+  const canvas = document.getElementById('tlCanvas');
+  const MIN_W = 900;
+  const totalW = Math.max(canvas.offsetWidth, MIN_W);
+  canvas.style.minWidth = MIN_W + 'px';
+
+  const trackW = totalW - LABEL_W;
+  const colW = trackW / N;
+  const rowsY0 = HEADER_H + GUTTER_TOP;
+  const total_h = rowsY0 + TRACKS.length * ROW_H + 12;
+  canvas.style.height = total_h + 'px';
+
+  cachedLayout = { totalW, trackW, colW, rowsY0, total_h };
+
+  // ─── SVG base layer ───────────────────────────────────
+  let svg = `<svg class="tl-svg" style="width:${totalW}px;height:${total_h}px;" viewBox="0 0 ${totalW} ${total_h}" preserveAspectRatio="none">`;
+
+  // Alternating column bands
+  for (let m = 0; m < N; m++) {
+    if (m % 2 === 0) {
+      svg += `<rect x="${LABEL_W + m * colW}" y="${HEADER_H}" width="${colW}" height="${total_h - HEADER_H}" fill="#FAFBFC"/>`;
+    }
+  }
+
+  // Vertical gridlines
+  for (let m = 0; m <= N; m++) {
+    const x = LABEL_W + m * colW;
+    svg += `<line x1="${x}" y1="${HEADER_H - 4}" x2="${x}" y2="${total_h - 4}" stroke="#E8ECF1" stroke-width="1"/>`;
+  }
+
+  // Horizontal row dividers
+  for (let i = 0; i <= TRACKS.length; i++) {
+    const y = rowsY0 + i * ROW_H;
+    svg += `<line x1="0" y1="${y}" x2="${totalW}" y2="${y}" stroke="#F0F3F7" stroke-width="1"/>`;
+  }
+
+  // Persistent, subtle today marker (thin solid tick at top)
+  const todayX = LABEL_W + (TODAY_FRAC / N) * trackW;
+  svg += `<line class="today-marker" x1="${todayX}" y1="${HEADER_H - 2}" x2="${todayX}" y2="${HEADER_H + 4}"/>`;
+
+  // Cursor tracker line (controlled by mouse)
+  svg += `<line id="cursorLine" class="cursor-line" x1="0" y1="${HEADER_H}" x2="0" y2="${total_h - 4}"/>`;
+
+  svg += '</svg>';
+
+  // ─── HTML layer ───────────────────────────────────────
+  let html = svg;
+
+  // Month headers
+  for (let m = 0; m < N; m++) {
+    const x = LABEL_W + m * colW;
+    html += `<div class="tl-mlbl" style="position:absolute;left:${x}px;top:0;width:${colW}px;height:${HEADER_H}px;">${MONTHS[m]}</div>`;
+  }
+
+  // Activity column header
+  html += `<div class="tl-activity-head" style="width:${LABEL_W}px;height:${HEADER_H}px;">Activity</div>`;
+
+  // Cursor date pill (hidden by default)
+  html += `<div id="cursorDate" class="cursor-date"></div>`;
+
+  // Tracks
+  TRACKS.forEach((t, i) => {
+    const rowY = rowsY0 + i * ROW_H;
+    const rowCenter = rowY + ROW_H / 2;
+
+    const lblClass = t.milestone ? 'tl-row-lbl milestone-lbl' : 'tl-row-lbl';
+    html += `<div class="${lblClass}" style="top:${rowY}px;width:${LABEL_W}px;height:${ROW_H}px;">${t.label}</div>`;
+
+    if (t.milestone) {
+      const msX = LABEL_W + (t.at / N) * trackW;
+      html += `<i class="fa-regular fa-calendar-check ms ms-${t.mtype}" style="left:${msX}px;top:${rowCenter}px;" data-idx="${i}"></i>`;
+      html += `<div class="ms-lbl ${t.mtype}" style="left:${msX}px;top:${rowCenter - 22}px;">${t.lbl}</div>`;
+    } else {
+      const barLeft = LABEL_W + (t.s / N) * trackW;
+      const barRight = LABEL_W + (t.e / N) * trackW;
+      const barW = Math.max(barRight - barLeft, 4);
+      const barTop = rowCenter - BAR_H / 2;
+      html += `<div class="bar ${t.cls}" style="left:${barLeft}px;top:${barTop}px;width:${barW}px;height:${BAR_H}px;" data-idx="${i}"></div>`;
+    }
+  });
+
+  canvas.innerHTML = html;
+  attachInteractions();
+}
+
+// ═══ INTERACTIONS ═════════════════════════════════════════
+function attachInteractions() {
+  const canvas = document.getElementById('tlCanvas');
+  const tt = document.getElementById('tt');
+  const cursorLine = document.getElementById('cursorLine');
+  const cursorDate = document.getElementById('cursorDate');
+
+  // Bar / milestone hover → tooltip
+  canvas.querySelectorAll('[data-idx]').forEach(el => {
+    el.addEventListener('mouseenter', (e) => {
+      const idx = parseInt(el.getAttribute('data-idx'));
+      const track = TRACKS[idx];
+      if (!track.tip) return;
+      const tip = track.tip;
+      tt.innerHTML = `
+        <div class="tooltip-title">${tip.title}</div>
+        <div class="tooltip-body">${tip.body}</div>
+        ${tip.sub ? `<div class="tooltip-sub">${tip.sub}</div>` : ''}
+      `;
+      tt.classList.add('show');
+      positionTip(e);
+    });
+    el.addEventListener('mousemove', positionTip);
+    el.addEventListener('mouseleave', () => tt.classList.remove('show'));
+  });
+
+  // Canvas-wide cursor tracker (vernier caliper effect)
+  canvas.addEventListener('mousemove', (e) => {
+    if (!cachedLayout) return;
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+
+    // Only active inside the track area (past the label column)
+    if (x < LABEL_W || x > cachedLayout.totalW) {
+      cursorLine.classList.remove('active');
+      cursorDate.classList.remove('active');
+      return;
+    }
+
+    const trackX = x - LABEL_W;
+    const frac = trackX / cachedLayout.trackW; // 0–1 across 10 months
+    const monthPos = frac * N; // 0–10
+    const monthIdx = Math.min(Math.floor(monthPos), N - 1);
+    const dayFrac = monthPos - monthIdx;
+    const day = Math.max(1, Math.min(MONTH_DAYS[monthIdx], Math.round(dayFrac * MONTH_DAYS[monthIdx]) + 1));
+
+    // Move cursor line
+    cursorLine.setAttribute('x1', x);
+    cursorLine.setAttribute('x2', x);
+    cursorLine.classList.add('active');
+
+    // Move date pill
+    const dateStr = `${day} ${MONTHS[monthIdx]}`;
+    cursorDate.textContent = dateStr;
+    cursorDate.style.left = x + 'px';
+    cursorDate.style.top = (HEADER_H - 22) + 'px';
+    cursorDate.classList.add('active');
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    cursorLine.classList.remove('active');
+    cursorDate.classList.remove('active');
+  });
+}
+
+function positionTip(e) {
+  const tt = document.getElementById('tt');
+  const pad = 14;
+  let x = e.clientX + pad;
+  let y = e.clientY + pad;
+  const tw = tt.offsetWidth, th = tt.offsetHeight;
+  if (x + tw > window.innerWidth - 8) x = e.clientX - tw - pad;
+  if (y + th > window.innerHeight - 8) y = e.clientY - th - pad;
+  tt.style.left = x + 'px';
+  tt.style.top = y + 'px';
+}
+
+window.addEventListener('load', render);
+window.addEventListener('resize', render);
+</script>
+</body>
+</html>
